@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>WebFlix</title>
 </head>
@@ -16,7 +16,7 @@
         <a href="/fiorella/paul">Fiorella et Paul</a>
         <a href="/a-propos">A propos</a>
     </nav>
-=======
+
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Nunito:400,700&display=swap" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
@@ -38,7 +38,7 @@
             </div>
         </div>
     </div>
->>>>>>> b337dd46bf856f49d0a7ba5dcb0396c4a06fa887
+
 
     <div class="max-w-5xl mx-auto px-3">
         @yield('content')
