@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts.app')
 
 @section('content')
     <a href="/films" class="text-gray-500">Retour aux films</a>

@@ -30,14 +30,15 @@ Route::get('/a-propos', [AboutController::class, 'index']);
 // AboutController -> show
 Route::get('/a-propos/{user}', [AboutController::class, 'show']);
 
-// CRUD Catégoeries
-Route::get('/categories', [CategoryController::class,'index']);
-//Afficher le formulaire
-Route::get('/categories/creer', [CategoryController::class,'create']);
-//Traiter le formulaire
-Route::post('/categories/creer', [CategoryController::class,'store']);
+// CRUD Catégories
+Route::get('/categories', [CategoryController::class, 'index']);
+// Afficher le formulaire
+Route::get('/categories/creer', [CategoryController::class, 'create']);
+// Traiter le formulaire
+Route::post('/categories/creer', [CategoryController::class, 'store']);
 
-Route::get('/films', [MovieController::class,'index']);
-Route::get('/films/creer', [MovieController::class,'create']);
-Route::post('/films/creer', [MovieController::class,'store']);
-Route::get('/films/{id}', [MovieController::class,'show']);
+// CRUD Films
+Route::get('/films', [MovieController::class, 'index']);
+Route::get('/films/creer', [MovieController::class, 'create']);
+Route::post('/films/creer', [MovieController::class, 'store']);
+Route::get('/film/{id}', [MovieController::class, 'show']);

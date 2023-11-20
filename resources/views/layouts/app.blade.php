@@ -1,51 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>WebFlix</title>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=Nunito:400,700&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
 </head>
-
-<body>
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">WebFlix</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/fiorella">Présentation</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/categories">Catégories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/a-propos">A propos</a>
-                    </li>
-                </ul>
+<body class="font-[Nunito] flex flex-col justify-between h-screen">
+    <div class="bg-gray-800 text-gray-300 py-8 shadow-xl">
+        <div class="max-w-5xl mx-auto px-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl">
+                    <a href="/">WebFlix</a>
+                </h1>
+                <nav class="space-x-3">
+                    <a class="hover:underline underline-offset-8" href="/">Accueil</a>
+                    <a class="hover:underline underline-offset-8" href="/categories">Catégories</a>
+                    <a class="hover:underline underline-offset-8" href="/films">Films</a>
+                    <a class="hover:underline underline-offset-8" href="/fiorella">Présentation</a>
+                    <a class="hover:underline underline-offset-8" href="/fiorella/emma?color=bleu">Fiorella Bleue et Emma</a>
+                    <a class="hover:underline underline-offset-8" href="/a-propos">A propos</a>
+                </nav>
             </div>
         </div>
-    </nav>
+    </div>
 
-
-    <div>
+    <div class="max-w-5xl mx-auto px-3 py-8 w-full">
         @yield('content')
     </div>
-    <footer>
-        <div>
-            <p> WebFlix &copy; {{ date('Y') }}</p>
+
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="max-w-5xl mx-auto px-3">
+            <p class="text-center text-xl">WebFlix &copy; {{ date('Y') }}</p>
         </div>
     </footer>
 </body>
-
 </html>
