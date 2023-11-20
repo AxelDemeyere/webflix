@@ -5,7 +5,7 @@
 <a href="/films/creer">Ajouter un film</a>
 
 @foreach ($movies as $movie)
-<a href="/films/{{$movie->id}}"><div>
+<div>
     <h2>
         {{ $movie->title }}
     </h2>
@@ -15,7 +15,7 @@
         <li>Date de sortie : {{ $movie->released_at }}</li>
         <li>Catégorie : {{$movie->category_id}}</li>
     </ul>
-
-</div></a>
+    <a href="/films/{{$movie->id}}">Voir</a>
+</div>
 @endforeach
 @endsection

@@ -38,6 +38,6 @@ Route::get('/categories/creer', [CategoryController::class,'create']);
 Route::post('/categories/creer', [CategoryController::class,'store']);
 
 Route::get('/films', [MovieController::class,'index']);
-// Route::get('/films/{id}', [MovieController::class,'show']);
 Route::get('/films/creer', [MovieController::class,'create']);
 Route::post('/films/creer', [MovieController::class,'store']);
+Route::get('/films/{id}', [MovieController::class,'show']);

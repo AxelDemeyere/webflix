@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -17,33 +18,46 @@ class MovieController extends Controller
 
     }
 
-    public function create() 
+    public function create()
     {
-        return view('movies/create-movie');
+        return view('movies/create-movie', [
+            'categories' => Category::all()->sortBy('name'),
+        ]);
     }
+
+    public function show($id) {
+        $movie = Movie::find($id);
+
+        return view('movies.show', ['movies' => $movie]);
+    }
+
+
+
+
+
 
     public function store(Request $request)
     {
-        /* --------------------------------------------------------------
-        Validation du champ name. Si aucune erreur, on va dans le save 
-        si il y a une erreur Lavarel renvoie vers le form avec les errurs
-        -------------------------------------------------------------- */ 
-    $request->validate([
-        'title' => 'required|min:3|unique:categories|max:10',
-    ]);
+        $request->validate([
+            'title' => 'required|min:2',
+            'synopsis' => 'required|min:10',
+            'duration' => 'required|integer|min:1',
+            'youtube' => 'nullable|string',
+            'released_at' => 'nullable|date',
+            'category' => 'nullable|exists:categories,id',
+        ]);
 
-        // Insertion en base de données
         $movie = new Movie();
-        // $request->name est le contenu de value
         $movie->title = $request->title;
-        $movie->synopsys = $request->synopsys;
+        $movie->synopsis = $request->synopsis;
         $movie->duration = $request->duration;
+        $movie->youtube = $request->youtube;
+        $movie->cover = 'https://image.tmdb.org/t/p/original/9uqCaPEIep4iBG3U4AqSP20LGjq.jpg';
         $movie->released_at = $request->released_at;
-        $movie->category = $request->category;
+        $movie->category_id = $request->category;
+        $movie->save();
 
-        $movie->save(); // INSERT INTO ... en Laravel 
-        
         return redirect('/films');
-        
     }
 }
+
