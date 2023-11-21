@@ -22,6 +22,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'axel.demeyere59@gmail.com',
             'name' => "Bib's"
         ]);
+
+        User::factory()->create([
+            'email' => 'manonbrowaeys@gmail.com',
+            'name' => 'Manon'
+        ]);
     
 
         // SANS API
@@ -66,6 +71,7 @@ class DatabaseSeeder extends Seeder
                 'released_at' => $movie['release_date'],
                 'youtube' => $movie['videos']['results'][0]['key'] ?? null,
                 'category_id' => $movie['genres'][0]['id'] ?? null,
+                'user_id' => User::all()->random(),
             ]);
         }
 

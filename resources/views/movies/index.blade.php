@@ -27,6 +27,7 @@
                         </p>
 
                     </a>
+                    @if (Auth::user() && Auth::user()->id == $movie->user_id)
                     <div class="flex mx-3 mb-3 m-2 justify-around">
                         <a class="border hover:border-gray-500 rounded py-1 px-2 bg-gray-500 hover:bg-white text-white hover:text-gray-500 text-xs"
                             href="/film/{{ $movie->id }}/modifier">Modifier</a>
@@ -34,6 +35,7 @@
                             href="/film/{{ $movie->id }}/supprimer"
                             onclick="return confirm('Êtes-vous sûr de vouloir supprimer le film {{ $movie->title }} ?')">Supprimer</a>
                     </div>
+                    @endif
                 </div>
             </div>
         @endforeach

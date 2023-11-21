@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class MovieController extends Controller
 {
@@ -59,13 +61,22 @@ class MovieController extends Controller
     public function edit($id)
     {
         $movie = Movie::findOrFail($id);
+
+        // On autorise la modif du film si l'utilisateur connecté le possède.
+        Gate::allowIf($movie->user_id == Auth::user()->id);
+
         return view('movies/edit', [
             'categories' => Category::all()->sortBy('name'),
             'movie' => $movie,
+
         ]);
     }
 
     public function update(Request $request, $id) {
+
+        $movie = Movie::findOrFail($id);
+        Gate::allowIf($movie->user_id == Auth::user()->id);
+
         $request->validate([
                 'title' => 'required|min:2',
                 'synopsis' => 'required|min:10',
@@ -75,7 +86,6 @@ class MovieController extends Controller
                 'category' => 'nullable|exists:categories,id',
             ]);
     
-            $movie = Movie::findOrFail($id);
             $movie->title = $request->title;
             $movie->synopsis = $request->synopsis;
             $movie->duration = $request->duration;
@@ -88,7 +98,12 @@ class MovieController extends Controller
     }
 
     public function destroy($id) {
+
+        $movie = Movie::findOrFail($id);
+        Gate::allowIf($movie->user_id == Auth::user()->id);
+        
         Movie::destroy($id);
+        
         
         return redirect('/films');
     }
