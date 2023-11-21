@@ -25,16 +25,12 @@ class MovieController extends Controller
         ]);
     }
 
-    public function show($id) {
+    public function show($id) 
+    {
         $movie = Movie::find($id);
 
         return view('movies.show', ['movie' => $movie]);
     }
-
-
-
-
-
 
     public function store(Request $request)
     {
@@ -59,5 +55,44 @@ class MovieController extends Controller
 
         return redirect('/films');
     }
+
+    public function edit($id)
+    {
+        $movie = Movie::findOrFail($id);
+        return view('movies/edit', [
+            'categories' => Category::all()->sortBy('name'),
+            'movie' => $movie,
+        ]);
+    }
+
+    public function update(Request $request, $id) {
+        $request->validate([
+                'title' => 'required|min:2',
+                'synopsis' => 'required|min:10',
+                'duration' => 'required|integer|min:1',
+                'youtube' => 'nullable|string',
+                'released_at' => 'nullable|date',
+                'category' => 'nullable|exists:categories,id',
+            ]);
+    
+            $movie = Movie::findOrFail($id);
+            $movie->title = $request->title;
+            $movie->synopsis = $request->synopsis;
+            $movie->duration = $request->duration;
+            $movie->youtube = $request->youtube;
+            $movie->released_at = $request->released_at;
+            $movie->category_id = $request->category;
+            $movie->save();
+    
+            return redirect('/films');
+    }
+
+    public function destroy($id) {
+        Movie::destroy($id);
+        
+        return redirect('/films');
+    }
+
+
 }
 
